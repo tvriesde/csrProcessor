@@ -1,0 +1,20 @@
+[
+  {
+    "name": "csrProcessor",
+    "scriptFile": "csrProcessorEventTrigger.dll",
+    "entryPoint": "csrProcessorEventTrigger.csrProcessor.Run",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "cloudEvent",
+        "direction": "In",
+        "type": "eventGridTrigger",
+        "cardinality": "One",
+        "properties": {}
+      }
+    ]
+  }
+]
