@@ -11,8 +11,11 @@ var functionAppName = '${abbrs.webSitesFunctions}${application}-${environment}-$
 resource eventSubscription 'Microsoft.EventGrid/systemTopics/eventSubscriptions@2020-10-15-preview' = {
   name: '${systemTopicName}/keyvaulkSubscription'
   properties: {
+    eventDeliverySchema: 'CloudEventSchemaV1_0'
+
     destination: {
       endpointType: 'AzureFunction'
+      
       properties:{
         resourceId: resourceId('Microsoft.Web/sites/functions', functionAppName, 'csrProcessor')
       }

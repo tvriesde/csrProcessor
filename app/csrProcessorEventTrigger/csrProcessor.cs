@@ -6,6 +6,7 @@ using Azure.Messaging;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
+
 namespace csrProcessorEventTrigger
 {
     public class csrProcessor
@@ -20,23 +21,7 @@ namespace csrProcessorEventTrigger
         [Function(nameof(csrProcessor))]
         public void Run([EventGridTrigger] CloudEvent cloudEvent, ILogger log)
         {
-            _logger.LogInformation("Event type: {type}, Event subject: {subject}", cloudEvent.EventType, cloudEvent.Subject);
+            _logger.LogInformation("Event type: {type}, Event subject: {subject}", cloudEvent.Type, cloudEvent.Subject);
         }
     }
-
-     public class certificateCreated
-    {
-        public string Id { get; set; }
-
-        public string Topic { get; set; }
-
-        public string Subject { get; set; }
-
-        public string EventType { get; set; }
-
-        public DateTime EventTime { get; set; }
-
-        public IDictionary<string, object> Data { get; set; }
-    }
-}
 }
