@@ -46,10 +46,21 @@ module functionApp 'modules/function.bicep' = {
     functionAppName: '${abbrs.webSitesFunctions}${application}-${environment}-${location}'
     hostingPlanName: '${abbrs.webServerFarms}${application}-${environment}-${location}'
     applicationInsightsName: '${abbrs.eventGridDomainsTopics}${application}-${environment}-${location}'
-    functionWorkerRuntime: 'dotnet-isolated'
+    functionWorkerRuntime: 'node'
     storageAccountType: 'Standard_LRS'
     systemTopicName: keyvault.outputs.systemTopicName
     location: location
     tags: tags
   }
 }
+
+module roleassignment 'modules/roleassignment.bicep' = {
+  name: 'roleassignment'
+  scope: rg
+  params: {
+    principalId: functionApp.outputs.principalId
+    roleDefinitionId:'a4417e6f-fecd-4de8-b567-7b0420556985'
+    keyVaultName: 'vault${resourceToken}'
+  }
+}
+

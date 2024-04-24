@@ -4,6 +4,7 @@ var abbrs = loadJsonContent('../abbreviations.json')
 param location string = 'eastus'
 param environment string = 'dev'
 param application string = 'csrprocessor'
+param function string = 'processCsr'
 
 var systemTopicName = '${abbrs.eventGridDomainsTopics}${application}-${environment}-${location}'
 var functionAppName = '${abbrs.webSitesFunctions}${application}-${environment}-${location}'
@@ -17,7 +18,7 @@ resource eventSubscription 'Microsoft.EventGrid/systemTopics/eventSubscriptions@
       endpointType: 'AzureFunction'
       
       properties:{
-        resourceId: resourceId('Microsoft.Web/sites/functions', functionAppName, 'csrProcessor')
+        resourceId: resourceId('Microsoft.Web/sites/functions', functionAppName, function)
       }
     }
   }

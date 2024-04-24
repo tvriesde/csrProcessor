@@ -7,7 +7,7 @@ param location string
   'dotnet-isolated'
   'java'
 ])
-param functionWorkerRuntime string = 'dotnet-isolated'
+param functionWorkerRuntime string = 'node'
 param functionAppName string
 param hostingPlanName string
 param applicationInsightsName string
@@ -73,7 +73,7 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
         }
         {
           name: 'WEBSITE_NODE_DEFAULT_VERSION'
-          value: '~14'
+          value: '~18'
         }
         {
           name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
@@ -102,3 +102,5 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
     Request_Source: 'rest'
   }
 }
+
+output principalId string = functionApp.identity.principalId
