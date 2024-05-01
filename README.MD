@@ -1,4 +1,5 @@
 Key Vault -> Event Grid System Topics -> Subscription Function App (node) -> Key Vault 
+![Alt text](diagram.png)
 
 To deploy
 1. deploy base infra infra/deploy-base.sh
